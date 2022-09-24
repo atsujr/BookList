@@ -63,8 +63,8 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
                                  name: UIResponder.keyboardWillHideNotification,
                                  object: nil)
     }
+    // キーボード表示通知の際の処理
     @objc func keyboardWillShow(_ notification: Notification) {
-        
         // 編集中のtextFieldを取得
         guard let textField = _activeTextField else { return }
         // キーボード、画面全体、textFieldのsizeを取得
@@ -72,22 +72,20 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
         guard let keyboardHeight = rect?.size.height else { return }
         let mainBoundsSize = UIScreen.main.bounds.size
         let textFieldHeight = textField.frame.height
-        
-        // ①
+
         let textFieldPositionY = textField.frame.origin.y + textFieldHeight + 10.0
-        // ②
         let keyboardPositionY = mainBoundsSize.height - keyboardHeight
         
-        // ③キーボードをずらす
         if keyboardPositionY <= textFieldPositionY {
             let duration: TimeInterval? =
-            notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+                notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
             UIView.animate(withDuration: duration!) {
-                // viewをy座標方向にtransformする
-                self.view.transform = CGAffineTransform(translationX: 0, y: keyboardPositionY - textFieldPositionY)
+                self.view.transform = CGAffineTransform(translationX: 0, y: keyboardTopPositionY - textFieldTopPositionY)
             }
         }
     }
+
+    // キーボード非表示通知の際の処理
     @objc func keyboardWillHide(_ notification: Notification) {
         let duration: TimeInterval? = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
         UIView.animate(withDuration: duration!) {

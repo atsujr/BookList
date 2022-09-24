@@ -81,9 +81,9 @@
 				3BA123BC28D81095008FB102 /* EditViewController.swift */,
 				3BA123BF28D815D3008FB102 /* BookTableViewCell.xib */,
 				3BA123BE28D815D3008FB102 /* BookTableViewCell.swift */,
+				3BA123C728D8479C008FB102 /* BookLog.swift */,
 				3BA123AD28D7FFC2008FB102 /* Assets.xcassets */,
 				3BA123AF28D7FFC2008FB102 /* LaunchScreen.storyboard */,
-				3BA123C728D8479C008FB102 /* BookLog.swift */,
 				3BA123B228D7FFC2008FB102 /* Info.plist */,
 			);
 			path = BookList;

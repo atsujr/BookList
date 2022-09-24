@@ -15,6 +15,8 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     let realm = try! Realm()
     
     var booklogs = [BookLog]()
+    //画面遷移用の変数を用意しておく
+    var nextnum: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +38,18 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         let screenRect = UIScreen.main.bounds
         tableview.frame = CGRect(x: 0, y: 0, width: screenRect.width, height: screenRect.height)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailViewController" {
+            let nextVC = segue.destination as! DetailViewController
+            nextVC.selectedrowNum = nextnum
+        }
+    }
     func getbooklistData() {
         booklogs = Array(realm.objects(BookLog.self)).reversed()
         tableview.reloadData()
     }
     
-    //ここから下はtabkleview周り
+//ここから下はtabkleview周り
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return booklogs.count
     }
@@ -71,14 +79,22 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         }
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 156
-    }
     //urlを取得
     func getImageURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return docDir.appendingPathComponent(fileName)
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 156
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // セルの選択を解除
+        tableView.deselectRow(at: indexPath, animated: true)
+        nextnum = indexPath.row
+        // 別の画面に遷移
+        performSegue(withIdentifier: "toDetailViewController", sender: nil)
+    }
+
     
 }

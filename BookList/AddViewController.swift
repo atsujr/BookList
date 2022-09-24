@@ -55,43 +55,43 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
         super.viewWillAppear(animated)
         
         // キーボード開閉のタイミングを取得
-        let notification = NotificationCenter.default
-        notification.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
-                                 name: UIResponder.keyboardWillShowNotification,
-                                 object: nil)
-        notification.addObserver(self, selector: #selector(self.keyboardWillHide(_:)),
-                                 name: UIResponder.keyboardWillHideNotification,
-                                 object: nil)
+//        let notification = NotificationCenter.default
+//        notification.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
+//                                 name: UIResponder.keyboardWillShowNotification,
+//                                 object: nil)
+//        notification.addObserver(self, selector: #selector(self.keyboardWillHide(_:)),
+//                                 name: UIResponder.keyboardWillHideNotification,
+//                                 object: nil)
     }
-    // キーボード表示通知の際の処理
-    @objc func keyboardWillShow(_ notification: Notification) {
-        // 編集中のtextFieldを取得
-        guard let textField = _activeTextField else { return }
-        // キーボード、画面全体、textFieldのsizeを取得
-        let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        guard let keyboardHeight = rect?.size.height else { return }
-        let mainBoundsSize = UIScreen.main.bounds.size
-        let textFieldHeight = textField.frame.height
-
-        let textFieldPositionY = textField.frame.origin.y + textFieldHeight + 10.0
-        let keyboardPositionY = mainBoundsSize.height - keyboardHeight
-        
-        if keyboardPositionY <= textFieldPositionY {
-            let duration: TimeInterval? =
-                notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-            UIView.animate(withDuration: duration!) {
-                self.view.transform = CGAffineTransform(translationX: 0, y: keyboardTopPositionY - textFieldTopPositionY)
-            }
-        }
-    }
-
-    // キーボード非表示通知の際の処理
-    @objc func keyboardWillHide(_ notification: Notification) {
-        let duration: TimeInterval? = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!) {
-            self.view.transform = CGAffineTransform.identity
-        }
-    }
+//     /キーボード表示通知の際の処理
+//    @objc func keyboardWillShow(_ notification: Notification) {
+//        // 編集中のtextFieldを取得
+//        guard let textField = _activeTextField else { return }
+//        // キーボード、画面全体、textFieldのsizeを取得
+//        let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+//        guard let keyboardHeight = rect?.size.height else { return }
+//        let mainBoundsSize = UIScreen.main.bounds.size
+//        let textFieldHeight = textField.frame.height
+//
+//        let textFieldPositionY = textField.frame.origin.y + textFieldHeight + 10.0
+//        let keyboardPositionY = mainBoundsSize.height - keyboardHeight
+//
+//        if keyboardPositionY <= textFieldPositionY {
+//            let duration: TimeInterval? =
+//                notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+//            UIView.animate(withDuration: duration!) {
+//                self.view.transform = CGAffineTransform(translationX: 0, y: keyboardPositionY - textFieldPositionY)
+//            }
+//        }
+//    }
+//
+//    // キーボード非表示通知の際の処理
+//    @objc func keyboardWillHide(_ notification: Notification) {
+//        let duration: TimeInterval? = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
+//        UIView.animate(withDuration: duration!) {
+//            self.view.transform = CGAffineTransform.identity
+//        }
+//    }
     @IBAction func takePhoto(_ sender: Any) {
         presentPickerController(sourceType: .camera)
     }

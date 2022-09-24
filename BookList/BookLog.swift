@@ -15,7 +15,7 @@ class BookLog: Object {
     @objc dynamic var oneOfThreeWords: String?
     @objc dynamic var twoOfThreeWords: String?
     @objc dynamic var threeOfThreeWords: String?
-    @objc dynamic var bookPoint: Int?
+    @objc dynamic var bookPoint: Int = 0
     @objc dynamic var memo: String?
     @objc dynamic var bookImageFileName: String?
     

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class AddViewController: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+class AddViewController: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate{
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitleTextField: UITextField!
@@ -26,15 +26,73 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
     
     var sliderNum: Int = 50
     
+    // 編集中のtextFieldを保持する変数
+    private var _activeTextField: UITextField? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeBookTitleToolButton()
-        makeAutherToolButton()
-        makeOneOfThreeToolButton()
-        maketwoOfThreeToolButton()
-        makethreeOfThreeToolButton()
+        bookTitleTextField.delegate = self
+        autherTextField.delegate = self
+        oneOfThreeWords.delegate = self
+        twoOfThreeWords.delegate = self
+        threeOfThreeWords.delegate = self
+        bookmemoTextField.delegate = self
+        
+        
         // Do any additional setup after loading the view.
         bookPointLabel.text = String(sliderNum)
+    }
+    //キーボードをreturnで閉じる
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    //キーボードを画面タップで閉じる
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // キーボード開閉のタイミングを取得
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
+                                 name: UIResponder.keyboardWillShowNotification,
+                                 object: nil)
+        notification.addObserver(self, selector: #selector(self.keyboardWillHide(_:)),
+                                 name: UIResponder.keyboardWillHideNotification,
+                                 object: nil)
+    }
+    @objc func keyboardWillShow(_ notification: Notification) {
+        
+        // 編集中のtextFieldを取得
+        guard let textField = _activeTextField else { return }
+        // キーボード、画面全体、textFieldのsizeを取得
+        let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        guard let keyboardHeight = rect?.size.height else { return }
+        let mainBoundsSize = UIScreen.main.bounds.size
+        let textFieldHeight = textField.frame.height
+        
+        // ①
+        let textFieldPositionY = textField.frame.origin.y + textFieldHeight + 10.0
+        // ②
+        let keyboardPositionY = mainBoundsSize.height - keyboardHeight
+        
+        // ③キーボードをずらす
+        if keyboardPositionY <= textFieldPositionY {
+            let duration: TimeInterval? =
+            notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+            UIView.animate(withDuration: duration!) {
+                // viewをy座標方向にtransformする
+                self.view.transform = CGAffineTransform(translationX: 0, y: keyboardPositionY - textFieldPositionY)
+            }
+        }
+    }
+    @objc func keyboardWillHide(_ notification: Notification) {
+        let duration: TimeInterval? = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!) {
+            self.view.transform = CGAffineTransform.identity
+        }
     }
     @IBAction func takePhoto(_ sender: Any) {
         presentPickerController(sourceType: .camera)
@@ -49,112 +107,6 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
         bookPointLabel.text = String(format: "%.0f", sender.value * 100)
         sliderNum = Int(sender.value * 100)
     }
-    
-    func makeBookTitleToolButton(){
-        let toolbar = UIToolbar()
-        
-        //完了ボタンを右寄せにする為に、左側を埋めるスペース作成
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                    target: nil,
-                                    action: nil)
-        //完了ボタンを作成
-        let done = UIBarButtonItem(title: "完了",
-                                   style: .done,
-                                   target: self,
-                                   action: #selector(didTapBookTitleDoneButton))
-        toolbar.items = [space, done]
-        toolbar.sizeToFit()
-        
-        bookTitleTextField.inputAccessoryView = toolbar
-    }
-    @objc func didTapBookTitleDoneButton() {
-        bookTitleTextField.resignFirstResponder()
-    }
-    func makeAutherToolButton(){
-        let toolbar = UIToolbar()
-        
-        //完了ボタンを右寄せにする為に、左側を埋めるスペース作成
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                    target: nil,
-                                    action: nil)
-        //完了ボタンを作成
-        let done = UIBarButtonItem(title: "完了",
-                                   style: .done,
-                                   target: self,
-                                   action: #selector(didTapAutherDoneButton))
-        toolbar.items = [space, done]
-        toolbar.sizeToFit()
-        
-        autherTextField.inputAccessoryView = toolbar
-    }
-    @objc func didTapAutherDoneButton() {
-        autherTextField.resignFirstResponder()
-    }
-    func makeOneOfThreeToolButton(){
-        let toolbar = UIToolbar()
-        
-        //完了ボタンを右寄せにする為に、左側を埋めるスペース作成
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                    target: nil,
-                                    action: nil)
-        //完了ボタンを作成
-        let done = UIBarButtonItem(title: "完了",
-                                   style: .done,
-                                   target: self,
-                                   action: #selector(didTapOneOfThreeDoneButton))
-        toolbar.items = [space, done]
-        toolbar.sizeToFit()
-        
-        oneOfThreeWords.inputAccessoryView = toolbar
-    }
-    @objc func didTapOneOfThreeDoneButton() {
-        oneOfThreeWords.resignFirstResponder()
-    }
-    func maketwoOfThreeToolButton(){
-        let toolbar = UIToolbar()
-        
-        //完了ボタンを右寄せにする為に、左側を埋めるスペース作成
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                    target: nil,
-                                    action: nil)
-        //完了ボタンを作成
-        let done = UIBarButtonItem(title: "完了",
-                                   style: .done,
-                                   target: self,
-                                   action: #selector(didTaptwoOfThreeDoneButton))
-        toolbar.items = [space, done]
-        toolbar.sizeToFit()
-        
-        twoOfThreeWords.inputAccessoryView = toolbar
-    }
-    @objc func didTaptwoOfThreeDoneButton() {
-        twoOfThreeWords.resignFirstResponder()
-    }
-    func makethreeOfThreeToolButton(){
-        let toolbar = UIToolbar()
-        
-        //完了ボタンを右寄せにする為に、左側を埋めるスペース作成
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                    target: nil,
-                                    action: nil)
-        //完了ボタンを作成
-        let done = UIBarButtonItem(title: "完了",
-                                   style: .done,
-                                   target: self,
-                                   action: #selector(didTapthreeOfThreeDoneButton))
-        toolbar.items = [space, done]
-        toolbar.sizeToFit()
-        
-        oneOfThreeWords.inputAccessoryView = toolbar
-    }
-    @objc func didTapthreeOfThreeDoneButton() {
-        threeOfThreeWords.resignFirstResponder()
-    }
-    
-    
-
-    
-    
     func saveTweet() {
         guard let bookTitle = bookTitleTextField.text else { return }
         guard let authertf = autherTextField.text else { return }

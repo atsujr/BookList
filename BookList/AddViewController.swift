@@ -113,7 +113,6 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
         guard let twoOfThree = twoOfThreeWords.text else { return }
         guard let threeOfThree = threeOfThreeWords.text else { return }
         
-        //guard let bookreviewpoint = sliderNum else { return }
         
         guard let bookmemo = bookmemoTextField.text else { return }
         

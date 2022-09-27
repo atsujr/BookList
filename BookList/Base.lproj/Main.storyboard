@@ -436,6 +436,7 @@
                                 <rect key="frame" x="18" y="556" width="374" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
+                                    <action selector="sliderchancge:" destination="1Um-dd-9A6" eventType="valueChanged" id="OwE-ZC-8oG"/>
                                     <action selector="sliderchancge:" destination="Z6I-WV-nOD" eventType="valueChanged" id="eu4-jd-Ndc"/>
                                 </connections>
                             </slider>
@@ -460,6 +461,7 @@
                     <connections>
                         <outlet property="autherTextField" destination="oiz-qQ-PBc" id="skO-2h-gPG"/>
                         <outlet property="bookImageViewInEdit" destination="vQs-Ih-Pqx" id="Cri-Kd-GYc"/>
+                        <outlet property="bookMemo" destination="G4x-XR-bLI" id="K0Y-w7-iIb"/>
                         <outlet property="bookScoreLabel" destination="xf2-j3-aRG" id="KNR-6z-01r"/>
                         <outlet property="bookScoreSlider" destination="wi9-9m-w6m" id="ElW-tx-yJa"/>
                         <outlet property="bookTitleTextField" destination="nPC-mW-BBF" id="w4A-i9-JTy"/>

@@ -80,6 +80,7 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                 booklogsInEdit[selectedNum].bookImageFileName = bookimageurl
             }
         }
+        self.navigationController?.popViewController(animated: true)
     }
     // 画像を保存するメソッド
     func saveImage(image: UIImage) -> String? {

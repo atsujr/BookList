@@ -57,6 +57,8 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! BookTableViewCell
         
+        cell.bookImage.image = nil
+        
         let booklog = booklogs[indexPath.row]
         cell.booknameLabel.text = booklog.bookName
         cell.writerLabel.text = booklog.auther
@@ -67,9 +69,13 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         
         if let imageFileName = booklog.bookImageFileName {
             let path = getImageURL(fileName: imageFileName).path // 画像のパスを取得
+            print("✊")
+            print(booklog.bookName)
+            print(path)
             if FileManager.default.fileExists(atPath: path) { // pathにファイルが存在しているかチェック
                 if let imageData = UIImage(contentsOfFile: path) { // pathに保存されている画像を取得
                     cell.bookImage.image = imageData
+                   // print(path)
                 } else {
                     print("Failed to load the image. path = ", path)
                 }
@@ -77,6 +83,7 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
                 print("Image file not found. path = ", path)
             }
         }
+        
         return cell
     }
     //urlを取得

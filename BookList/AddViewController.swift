@@ -97,7 +97,7 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
     }
     @IBAction func save(_ sender: Any) {
         saveTweet()
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func sliderchancge(_ sender: UISlider) {
@@ -141,6 +141,7 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
         try! realm.write({
             realm.add(booklog) // レコードを追加している
         })
+        
         
         
         

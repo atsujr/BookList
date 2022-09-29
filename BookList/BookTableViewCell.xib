@@ -29,7 +29,7 @@
                         <rect key="frame" x="15" y="15" width="281" height="140"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NBq-Md-lQh">
-                                <rect key="frame" x="0.0" y="0.0" width="189" height="140"/>
+                                <rect key="frame" x="0.0" y="0.0" width="197" height="140"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQo-Ui-GH8">
                                         <rect key="frame" x="0.0" y="0.0" width="41.5" height="24"/>
@@ -96,18 +96,17 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5zc-y6-Omq">
-                                <rect key="frame" x="200" y="0.0" width="81" height="140"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5zc-y6-Omq">
+                                <rect key="frame" x="208" y="5" width="73" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="5zc-y6-Omq" secondAttribute="height" multiplier="81:140" id="zSn-pp-dTW"/>
+                                    <constraint firstAttribute="width" secondItem="5zc-y6-Omq" secondAttribute="height" multiplier="9:16" id="zSn-pp-dTW"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="5zc-y6-Omq" secondAttribute="bottom" id="97Y-j5-VMI"/>
+                            <constraint firstAttribute="bottom" secondItem="5zc-y6-Omq" secondAttribute="bottom" constant="5" id="97Y-j5-VMI"/>
                             <constraint firstItem="5zc-y6-Omq" firstAttribute="centerY" secondItem="9XA-UX-4CB" secondAttribute="centerY" id="cuU-Ih-l9O"/>
-                            <constraint firstAttribute="trailing" secondItem="5zc-y6-Omq" secondAttribute="trailing" id="ewu-hy-q8P"/>
-                            <constraint firstItem="5zc-y6-Omq" firstAttribute="top" secondItem="9XA-UX-4CB" secondAttribute="top" id="rue-Ew-max"/>
+                            <constraint firstItem="5zc-y6-Omq" firstAttribute="top" secondItem="9XA-UX-4CB" secondAttribute="top" constant="5" id="rue-Ew-max"/>
                         </constraints>
                     </stackView>
                 </subviews>
@@ -133,9 +132,11 @@
                 <outlet property="mainBackground" destination="nZd-yx-Pvd" id="fNB-gS-QfS"/>
                 <outlet property="oneOfThreeWordsLabel" destination="Yu3-L2-YaC" id="tqM-44-kwD"/>
                 <outlet property="readingDayLabel" destination="We7-o0-0ov" id="Ho2-oC-4Fa"/>
+                <outlet property="readingDayTitleLabel" destination="tQR-IH-3Ow" id="2ax-0U-39e"/>
                 <outlet property="threeOfWordsLabel" destination="roO-Tz-i6F" id="xO7-MN-YDE"/>
                 <outlet property="twoOfThreeWordsLabel" destination="0Ix-f1-UDd" id="qws-he-AbQ"/>
                 <outlet property="writerLabel" destination="kr2-2d-f7I" id="hy1-22-9Fe"/>
+                <outlet property="writerTitleLabel" destination="6Vv-kR-5yl" id="tun-yS-hMB"/>
             </connections>
             <point key="canvasLocation" x="216.66666666666669" y="33.482142857142854"/>
         </tableViewCell>

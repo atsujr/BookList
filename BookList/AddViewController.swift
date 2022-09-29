@@ -11,12 +11,20 @@ import RealmSwift
 
 class AddViewController: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate{
     
+    @IBOutlet weak var takePhotoButoon: UIButton!
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookTitleTextField: UITextField!
     @IBOutlet weak var autherTextField: UITextField!
     @IBOutlet weak var oneOfThreeWords: UITextField!
     @IBOutlet weak var twoOfThreeWords: UITextField!
     @IBOutlet weak var threeOfThreeWords: UITextField!
+    
+    @IBOutlet weak var bigBookTitleLabel: UILabel!
+    @IBOutlet weak var bigAutherNameLabel: UILabel!
+    @IBOutlet weak var bigBookImageLabel: UILabel!
+    @IBOutlet weak var bigBookScoreLabekl: UILabel!
+    @IBOutlet weak var bigBookMatomeLabel: UILabel!
+    @IBOutlet weak var bigMemoLabel: UILabel!
     
     @IBOutlet weak var bookPointLabel: UILabel!
     
@@ -53,45 +61,17 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // キーボード開閉のタイミングを取得
-//        let notification = NotificationCenter.default
-//        notification.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
-//                                 name: UIResponder.keyboardWillShowNotification,
-//                                 object: nil)
-//        notification.addObserver(self, selector: #selector(self.keyboardWillHide(_:)),
-//                                 name: UIResponder.keyboardWillHideNotification,
-//                                 object: nil)
+        preparefont()
     }
-//     /キーボード表示通知の際の処理
-//    @objc func keyboardWillShow(_ notification: Notification) {
-//        // 編集中のtextFieldを取得
-//        guard let textField = _activeTextField else { return }
-//        // キーボード、画面全体、textFieldのsizeを取得
-//        let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-//        guard let keyboardHeight = rect?.size.height else { return }
-//        let mainBoundsSize = UIScreen.main.bounds.size
-//        let textFieldHeight = textField.frame.height
-//
-//        let textFieldPositionY = textField.frame.origin.y + textFieldHeight + 10.0
-//        let keyboardPositionY = mainBoundsSize.height - keyboardHeight
-//
-//        if keyboardPositionY <= textFieldPositionY {
-//            let duration: TimeInterval? =
-//                notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-//            UIView.animate(withDuration: duration!) {
-//                self.view.transform = CGAffineTransform(translationX: 0, y: keyboardPositionY - textFieldPositionY)
-//            }
-//        }
-//    }
-//
-//    // キーボード非表示通知の際の処理
-//    @objc func keyboardWillHide(_ notification: Notification) {
-//        let duration: TimeInterval? = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
-//        UIView.animate(withDuration: duration!) {
-//            self.view.transform = CGAffineTransform.identity
-//        }
-//    }
+    func preparefont() {
+        bigBookTitleLabel.font  = .smartfont(ofSize: 17)
+        bigAutherNameLabel.font = .smartfont(ofSize: 17)
+        bigBookImageLabel.font = .smartfont(ofSize: 17)
+        bigBookScoreLabekl.font = .smartfont(ofSize: 17)
+        bigBookMatomeLabel.font = .smartfont(ofSize: 17)
+        bigMemoLabel.font = .smartfont(ofSize: 17)
+        takePhotoButoon.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 17)
+    }
     @IBAction func takePhoto(_ sender: Any) {
         presentPickerController(sourceType: .camera)
     }

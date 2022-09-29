@@ -22,6 +22,14 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBOutlet weak var twoOfThreeTextField: UITextField!
     @IBOutlet weak var threeOfThreeTextField: UITextField!
     
+    @IBOutlet weak var bigBookTitleLabel: UILabel!
+    @IBOutlet weak var bigAutherNameLabel: UILabel!
+    @IBOutlet weak var bigBookImageLabel: UILabel!
+    @IBOutlet weak var bigBookScoreLabekl: UILabel!
+    @IBOutlet weak var bigBookMatomeLabel: UILabel!
+    @IBOutlet weak var bigMemoLabel: UILabel!
+    @IBOutlet weak var takePhotoButoon: UIButton!
+    
     @IBOutlet weak var bookMemo: UITextField!
     var sliderNum: Int = 0
     
@@ -41,6 +49,16 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         
         bookMemo.delegate = self
         // Do any additional setup after loading the view.
+        preparefont()
+    }
+    func preparefont() {
+        bigBookTitleLabel.font  = .smartfont(ofSize: 17)
+        bigAutherNameLabel.font = .smartfont(ofSize: 17)
+        bigBookImageLabel.font = .smartfont(ofSize: 17)
+        bigBookScoreLabekl.font = .smartfont(ofSize: 17)
+        bigBookMatomeLabel.font = .smartfont(ofSize: 17)
+        bigMemoLabel.font = .smartfont(ofSize: 17)
+        takePhotoButoon.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 17)
     }
     //キーボードを画面タップで閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -168,3 +186,5 @@ extension EditViewController: UITextFieldDelegate{
         return true
     }
 }
+
+

@@ -22,6 +22,7 @@
 		3BA123C628D8163C008FB102 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3BA123C528D8163C008FB102 /* RealmSwift */; };
 		3BA123C828D8479C008FB102 /* BookLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA123C728D8479C008FB102 /* BookLog.swift */; };
 		3BAD8B5A28E5973C007FA5E7 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD8B5928E5973C007FA5E7 /* ShadowView.swift */; };
+		3BAD8B5C28E5B202007FA5E7 /* 03SmartFontUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BAD8B5B28E5B202007FA5E7 /* 03SmartFontUI.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		3BA123BF28D815D3008FB102 /* BookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
 		3BA123C728D8479C008FB102 /* BookLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLog.swift; sourceTree = "<group>"; };
 		3BAD8B5928E5973C007FA5E7 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		3BAD8B5B28E5B202007FA5E7 /* 03SmartFontUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 03SmartFontUI.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				3BA123BA28D81088008FB102 /* DetailViewController.swift */,
 				3BA123BC28D81095008FB102 /* EditViewController.swift */,
 				3BA123BF28D815D3008FB102 /* BookTableViewCell.xib */,
+				3BAD8B5B28E5B202007FA5E7 /* 03SmartFontUI.ttf */,
 				3BA123BE28D815D3008FB102 /* BookTableViewCell.swift */,
 				3BA123C728D8479C008FB102 /* BookLog.swift */,
 				3BA123AD28D7FFC2008FB102 /* Assets.xcassets */,
@@ -159,6 +162,7 @@
 			files = (
 				3BA123C128D815D3008FB102 /* BookTableViewCell.xib in Resources */,
 				3BA123B128D7FFC2008FB102 /* LaunchScreen.storyboard in Resources */,
+				3BAD8B5C28E5B202007FA5E7 /* 03SmartFontUI.ttf in Resources */,
 				3BA123AE28D7FFC2008FB102 /* Assets.xcassets in Resources */,
 				3BA123AC28D7FFBF008FB102 /* Main.storyboard in Resources */,
 			);

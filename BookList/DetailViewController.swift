@@ -22,8 +22,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var twoOfThreeMatomeLabel: UILabel!
     @IBOutlet weak var threeOfThreeMatomeLabel: UILabel!
     
-    
     @IBOutlet weak var memoLabel: UILabel!
+    
+    @IBOutlet weak var bigBookTitleLabel: UILabel!
+    @IBOutlet weak var bigAutherNameLabel: UILabel!
+    @IBOutlet weak var bigBookImageLabel: UILabel!
+    @IBOutlet weak var bigBookScoreLabekl: UILabel!
+    @IBOutlet weak var bigBookMatomeLabel: UILabel!
+    @IBOutlet weak var bigMemoLabel: UILabel!
     
     var selectedrowNum: Int!
     
@@ -34,8 +40,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        preparefont()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,6 +71,24 @@ class DetailViewController: UIViewController {
                 print("Image file not found. path = ", path)
             }
         }
+        preparefont()
+    }
+    func preparefont() {
+        bookTitleLabel.font = .smartfont(ofSize: 17)
+        autherLabel.font = .smartfont(ofSize: 17)
+        bookScoreLabel.font = .smartfont(ofSize: 17)
+        
+        oneOfThreeMatomeLabel.font = .smartfont(ofSize: 17)
+        twoOfThreeMatomeLabel.font = .smartfont(ofSize: 17)
+        threeOfThreeMatomeLabel.font = .smartfont(ofSize: 17)
+        memoLabel.font = .smartfont(ofSize: 17)
+        
+        bigBookTitleLabel.font  = UIFont.boldSystemFont(ofSize: 17)
+        bigAutherNameLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        bigBookImageLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        bigBookScoreLabekl.font = UIFont.boldSystemFont(ofSize: 17)
+        bigBookMatomeLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        bigMemoLabel.font = UIFont.boldSystemFont(ofSize: 17)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditVIewController" {

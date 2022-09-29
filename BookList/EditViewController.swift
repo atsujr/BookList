@@ -9,7 +9,11 @@ import UIKit
 import RealmSwift
 
 class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
     var selectedNum: Int!
+    
+    var slider = UISlider()
+    
     @IBOutlet weak var bookTitleTextField: UITextField!
     @IBOutlet weak var autherTextField: UITextField!
     
@@ -31,6 +35,10 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBOutlet weak var takePhotoButoon: UIButton!
     
     @IBOutlet weak var bookMemo: UITextField!
+    
+    @IBOutlet weak var savebutton: UIBarButtonItem!
+//    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     var sliderNum: Int = 0
     
     @IBOutlet weak var memoTextField: UITextField!
@@ -50,6 +58,7 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         bookMemo.delegate = self
         // Do any additional setup after loading the view.
         preparefont()
+        
     }
     func preparefont() {
         bigBookTitleLabel.font  = .smartfont(ofSize: 17)
@@ -59,6 +68,15 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         bigBookMatomeLabel.font = .smartfont(ofSize: 17)
         bigMemoLabel.font = .smartfont(ofSize: 17)
         takePhotoButoon.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 17)
+        
+        savebutton.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 15)!,
+            NSAttributedString.Key.foregroundColor: UIColor.black],
+            for: .normal)
+        backButton.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 15)!,
+            NSAttributedString.Key.foregroundColor: UIColor.black],
+            for: .normal)
     }
     //キーボードを画面タップで閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -69,6 +87,7 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         bookScoreLabel.text = String(format: "%.0f", sender.value * 100)
         sliderNum = Int(sender.value * 100)
     }
+
     
     @IBAction func saveInEdit(_ sender: Any) {
         
@@ -98,6 +117,9 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                 booklogsInEdit[selectedNum].bookImageFileName = bookimageurl
             }
         }
+        self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     // 画像を保存するメソッド
@@ -161,6 +183,7 @@ class EditViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                 print("Image file not found. path = ", path)
             }
         }
+        bookScoreSlider.setValue(Float(Float(booklogsInEdit[selectedNum].bookPoint) / 100), animated: false)
     }
     func getImageURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

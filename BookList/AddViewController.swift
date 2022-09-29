@@ -4,6 +4,8 @@
 //
 //  Created by Atsuhiro Muroyama on 2022/09/19.
 //
+//fillは優先順位によって要素を引き伸ばすことで余白を解決する
+//equalspacingは要素かんの余白をつけて、余白をいい感じにしてくれる使っていい感じにする
 
 import Foundation
 import UIKit
@@ -27,6 +29,10 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
     @IBOutlet weak var bigMemoLabel: UILabel!
     
     @IBOutlet weak var bookPointLabel: UILabel!
+    
+    @IBOutlet weak var savebutton: UIBarButtonItem!
+//    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
     let realm = try! Realm()
     
@@ -71,9 +77,22 @@ class AddViewController: UIViewController,UINavigationControllerDelegate,UIImage
         bigBookMatomeLabel.font = .smartfont(ofSize: 17)
         bigMemoLabel.font = .smartfont(ofSize: 17)
         takePhotoButoon.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 17)
+        
+        savebutton.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 15)!,
+            NSAttributedString.Key.foregroundColor: UIColor.black],
+            for: .normal)
+        backButton.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 15)!,
+            NSAttributedString.Key.foregroundColor: UIColor.black],
+            for: .normal)
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 218/255, green: 247/255, blue: 255/255, alpha: 1.0)
     }
     @IBAction func takePhoto(_ sender: Any) {
         presentPickerController(sourceType: .camera)
+    }
+    @IBAction func back(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     @IBAction func save(_ sender: Any) {
         saveTweet()

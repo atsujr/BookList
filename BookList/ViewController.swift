@@ -31,6 +31,9 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getbooklistData()
+        self.navigationItem.title = "自分の本棚"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 20)]
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 218/255, green: 247/255, blue: 255/255, alpha: 1.0)
     }
     
     override func viewDidLayoutSubviews() {

@@ -31,6 +31,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var bigBookMatomeLabel: UILabel!
     @IBOutlet weak var bigMemoLabel: UILabel!
     
+    @IBOutlet weak var gobutton: UIBarButtonItem!
+//    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     var selectedrowNum: Int!
     
     var booklogs = [BookLog]()
@@ -50,7 +53,7 @@ class DetailViewController: UIViewController {
         autherLabel.text = booklogs[selectedrowNum].auther
         
         bookScoreLabel.text = String(booklogs[selectedrowNum].bookPoint)
-        bookScoreProgressView.setProgress(Float(booklogs[selectedrowNum].bookPoint) / 100, animated: true)
+        bookScoreProgressView.setProgress(Float(booklogs[selectedrowNum].bookPoint) / 100, animated: false)
         
         
         oneOfThreeMatomeLabel.text = booklogs[selectedrowNum].oneOfThreeWords
@@ -89,6 +92,17 @@ class DetailViewController: UIViewController {
         bigBookScoreLabekl.font = UIFont.boldSystemFont(ofSize: 17)
         bigBookMatomeLabel.font = UIFont.boldSystemFont(ofSize: 17)
         bigMemoLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 218/255, green: 247/255, blue: 255/255, alpha: 1.0)
+        
+        gobutton.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 15)!,
+            NSAttributedString.Key.foregroundColor: UIColor.black],
+            for: .normal)
+        backButton.setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 15)!,
+            NSAttributedString.Key.foregroundColor: UIColor.black],
+            for: .normal)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditVIewController" {
@@ -101,6 +115,9 @@ class DetailViewController: UIViewController {
     func getImageURL(fileName: String) -> URL {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return docDir.appendingPathComponent(fileName)
+    }
+    @IBAction func back(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     

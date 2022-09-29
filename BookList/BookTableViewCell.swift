@@ -9,6 +9,7 @@ import UIKit
 
 class BookTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var mainBackground: UIView!
     @IBOutlet weak var booknameLabel: UILabel!
     @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var readingDayLabel: UILabel!

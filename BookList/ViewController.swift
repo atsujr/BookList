@@ -24,6 +24,7 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         tableview.register(UINib(nibName: "BookTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         tableview.dataSource = self
         tableview.delegate = self
+        tableview.separatorStyle = .none
         getbooklistData()
     }
     
@@ -69,9 +70,6 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         
         if let imageFileName = booklog.bookImageFileName {
             let path = getImageURL(fileName: imageFileName).path // 画像のパスを取得
-            print("✊")
-            print(booklog.bookName)
-            print(path)
             if FileManager.default.fileExists(atPath: path) { // pathにファイルが存在しているかチェック
                 if let imageData = UIImage(contentsOfFile: path) { // pathに保存されている画像を取得
                     cell.bookImage.image = imageData
@@ -84,6 +82,10 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
             }
         }
         
+        cell.mainBackground.layer.cornerRadius = 8
+        cell.mainBackground.layer.masksToBounds = true
+        cell.backgroundColor = .systemGray6
+        
         return cell
     }
     //urlを取得
@@ -92,7 +94,7 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         return docDir.appendingPathComponent(fileName)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 156
+        return 170
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

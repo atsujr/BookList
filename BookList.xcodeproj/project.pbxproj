@@ -21,6 +21,7 @@
 		3BA123C428D8163C008FB102 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3BA123C328D8163C008FB102 /* Realm */; };
 		3BA123C628D8163C008FB102 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3BA123C528D8163C008FB102 /* RealmSwift */; };
 		3BA123C828D8479C008FB102 /* BookLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA123C728D8479C008FB102 /* BookLog.swift */; };
+		3BAD8B5A28E5973C007FA5E7 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD8B5928E5973C007FA5E7 /* ShadowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		3BA123BE28D815D3008FB102 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		3BA123BF28D815D3008FB102 /* BookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
 		3BA123C728D8479C008FB102 /* BookLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLog.swift; sourceTree = "<group>"; };
+		3BAD8B5928E5973C007FA5E7 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		3BA123A328D7FFBF008FB102 /* BookList */ = {
 			isa = PBXGroup;
 			children = (
+				3BAD8B5928E5973C007FA5E7 /* ShadowView.swift */,
 				3BA123A428D7FFBF008FB102 /* AppDelegate.swift */,
 				3BA123A628D7FFBF008FB102 /* SceneDelegate.swift */,
 				3BA123A828D7FFBF008FB102 /* ViewController.swift */,
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BAD8B5A28E5973C007FA5E7 /* ShadowView.swift in Sources */,
 				3BA123A928D7FFBF008FB102 /* ViewController.swift in Sources */,
 				3BA123A528D7FFBF008FB102 /* AppDelegate.swift in Sources */,
 				3BA123BD28D81095008FB102 /* EditViewController.swift in Sources */,
